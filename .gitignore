@@ -1,1 +1,5 @@
-data_download.py
+strat_material
+env
+.env
+data
+__pycache__
