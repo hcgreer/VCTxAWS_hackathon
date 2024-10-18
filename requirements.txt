@@ -3,5 +3,7 @@ langchain==0.3.3
 langchain-aws==0.2.2
 langchain-core==0.3.10
 langchain-text-splitters==0.3.0
+langgraph==0.2.35
+langgraph-checkpoint==2.0.1
 python-dotenv==1.0.1
 streamlit==1.39.0
