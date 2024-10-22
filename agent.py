@@ -15,7 +15,7 @@ aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
 # Create an instance of ChatBedrock to interact with the language model
 llm = ChatBedrock(
     model_id="anthropic.claude-3-haiku-20240307-v1:0",
-    model_kwargs=dict(temperature=0.25),
+    model_kwargs=dict(temperature=0.5),
     aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key,
     region_name="us-east-1"
@@ -180,9 +180,13 @@ prompt = ChatPromptTemplate.from_messages([
 chain = prompt | agent_executor
 # Function to invoke the language model with a user's message
 def invoke_llm(user_message, llm = chain):
-    response = llm.invoke(
-        {
-            "message": user_message
-        }
-    )
-    return response['messages'][-1].content.replace('<result>', '').replace('</result>', '')
+    try:
+        response = llm.invoke(
+            {
+                "message": user_message
+            }
+        )
+        return response['messages'][-1].content.replace('<result>', '').replace('</result>', '')
+    except Exception as e:
+        if e.response['Error']['Code'] == "ThrottlingException":
+            return "Throttling ERROR: I have encountered throttling issues that are beyond my control. Since this is a simple, one-time use, I do not want to spend money to buy throughput. My agent was built using Claude 3 Haiku, but as of 10/21, the only model I can run without throttling issues is Amazon Titan. Unfortunately, I can not get Amazon Titan to use a tool, making it unsuitable for my needs. Therefore, if you are reading this.....all hope is lost."
