@@ -190,3 +190,5 @@ def invoke_llm(user_message, llm = chain):
     except Exception as e:
         if e.response['Error']['Code'] == "ThrottlingException":
             return "Throttling ERROR: I have encountered throttling issues that are beyond my control. Since this is a simple, one-time use, I do not want to spend money to buy throughput. My agent was built using Claude 3 Haiku, but as of 10/21, the only model I can run without throttling issues is Amazon Titan. Unfortunately, I can not get Amazon Titan to use a tool, making it unsuitable for my needs. Therefore, if you are reading this.....all hope is lost."
+        else:
+            raise e
