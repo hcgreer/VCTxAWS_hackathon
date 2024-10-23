@@ -16,7 +16,7 @@ This project aims to build an AI-powered assistant for creating the best competi
   - The game data was split into smaller chunks to calculate total stats per game for overall player totals.
   - Once stats were totaled by match, a rating system was designed to rate each player, using a weighted average favoring recent performances.
   - The tournament, player, and team datasets were used to find current teams and regions of players. Players who had not played a game in 2024 were not considered.
-  - Analysis determined each player's role. Players with a play rate above 55% for a certain role were labeled as that role. Those with a 25%-55% play rate in two or more roles were labeled as flex players.
+  - Analysis determined each player's role. Players with a play rate above 55% for a certain role were labeled as that role. Those with more than 25% play rate in two or more roles were labeled as flex players.
   - The data was then merged to include a player's current team, region, role, total, and international stats.
 
 ### Model
