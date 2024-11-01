@@ -2,3 +2,4 @@ strat_material
 env
 data
 __pycache__
+.env
